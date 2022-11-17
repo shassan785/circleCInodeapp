@@ -1,0 +1,11 @@
+version:2.1
+jobs:
+  build:
+    docker:
+      - image: cimg/node:14.10.1
+      - restore_cache:
+        key: v1-dpendencies-{{checksum"package.json"}}
+      run:
+        command: npm install
+      run:
+        command: npm test
