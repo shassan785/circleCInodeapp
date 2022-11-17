@@ -4,8 +4,14 @@ jobs:
     docker:
       - image: cimg/node:14.10.1
       - restore_cache:
-        key: v1-dpendencies-{{checksum"package.json"}}
+          key: v1-dpendencies-{{checksum"package.json"}}
+      
       run:
         command: npm install
+
+      - save cache: 
+          key: v1-dpendencies-{{checksum"package.json"}}
+          paths: 
+            node_modules
       run:
         command: npm test
